@@ -1,5 +1,9 @@
 # DevOps Production Project
 
+![Flask CI Pipeline](https://github.com/purvapatil1/devops-production-project/actions/workflows/ci.yml/badge.svg)
+
+# DevOps Production Project
+
 A hands-on project demonstrating real-world DevOps practices.
 
 ## Application
