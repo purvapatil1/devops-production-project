@@ -18,12 +18,29 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
+
+          # Load environment variables from ConfigMap
+          envFrom:
+            - configMapRef:
+                name: flask-config
+
+          # Load DEMO_TOKEN from Kubernetes Secret
+          env:
+            - name: DEMO_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: flask-secret
+                  key: DEMO_TOKEN
+
+          # Check whether the application is ready
           readinessProbe:
             httpGet:
               path: /health
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
+
+          # Restart the container if the application becomes unhealthy
           livenessProbe:
             httpGet:
               path: /health
